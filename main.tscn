@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://butt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://start_button.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 24.235, 16.0594 )
+
+[node name="StartButton" type="Button" parent="."]
+margin_left = 19.16
+margin_top = 44.9928
+margin_right = 176.16
+margin_bottom = 117.993
+text = "Start"
+script = ExtResource( 2 )
