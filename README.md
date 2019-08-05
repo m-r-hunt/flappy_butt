@@ -1,4 +1,4 @@
-# flappy_butt
+# Flappy Butt
 
 Simple Godot demo I made, entirely derivative.
 
