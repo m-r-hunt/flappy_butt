@@ -31,6 +31,10 @@ window/size/height=160
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
+[gui]
+
+theme/custom_font="res://m5x7.tres"
+
 [input]
 
 flap={

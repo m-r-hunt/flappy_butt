@@ -2,6 +2,7 @@ extends RigidBody2D
 
 signal butt_died
 signal butt_collision
+signal score_change
 
 export var flap_power = 50.0
 var state = "playing"
@@ -32,3 +33,4 @@ func on_collision(_body):
 
 func score_point():
 	score += 1
+	emit_signal("score_change", score)
