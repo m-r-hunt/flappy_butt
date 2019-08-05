@@ -24,6 +24,10 @@ config/name="FlappyButt"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global_score="*res://global_score.gd"
+
 [display]
 
 window/size/width=240

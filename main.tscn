@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://sprites/bg3.png" type="Texture" id=1]
 [ext_resource path="res://bg_scroll.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://butt.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sprites/title.png" type="Texture" id=7]
 [ext_resource path="res://score_label.gd" type="Script" id=8]
+[ext_resource path="res://sounds/start.wav" type="AudioStream" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -32,12 +33,17 @@ func on_butt_collision():
 func on_butt_died():
 	get_tree().paused = true
 	$GameOverUI.visible = true
-	$GameOverUI/Panel/MarginContainer/VBoxContainer/ScoreLabel.text = \"Score: %s\" % $Butt.score
+	var new_high_score = get_node(\"/root/global_score\").submit_score($Butt.score)
+	if new_high_score:
+		$GameOverUI/Panel/MarginContainer/VBoxContainer/ScoreLabel.text = \"New High Score! %s\" % $Butt.score
+	else:
+		$GameOverUI/Panel/MarginContainer/VBoxContainer/ScoreLabel.text = \"Score: %s (High Score: %s)\" % [$Butt.score, get_node(\"/root/global_score\").high_score]
 
 func on_start_button_pressed():
 	get_tree().paused = false
 	$StartUI.queue_free()
 	$Title.queue_free()
+	$StartPlayer.play()
 
 func on_restart_button_pressed():
 	print(\"reset\")
@@ -165,3 +171,6 @@ margin_right = 40.0
 margin_bottom = 14.0
 text = "Score: 0"
 script = ExtResource( 8 )
+
+[node name="StartPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )

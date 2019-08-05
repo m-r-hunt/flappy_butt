@@ -14,12 +14,14 @@ func _ready():
 func _physics_process(_delta):
 	if transform.origin.y >= 260.0:
 		emit_signal("butt_died")
+		$DeathPlayer.play()
 		print(score)
 	match state:
 		"playing":
 			if Input.is_action_just_pressed("flap") && transform.origin.y >= 0.0:
 				set_linear_velocity(Vector2(0.0, -flap_power))
 				get_node("ImportSprite/AnimationPlayer").play("Flap")
+				$FlapPlayer.play()
 			if linear_velocity.y > 0.0:
 				get_node("ImportSprite/AnimationPlayer").play("Idle")
 
@@ -29,8 +31,10 @@ func on_collision(_body):
 	set_collision_layer(0)
 	apply_central_impulse(Vector2(50.0, -50.0))
 	state = "dying"
+	$CollidePlayer.play()
 	emit_signal("butt_collision")
 
 func score_point():
 	score += 1
 	emit_signal("score_change", score)
+	$ScorePlayer.play()
