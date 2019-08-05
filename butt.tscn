@@ -39,6 +39,7 @@ tracks/0/keys = {
 
 [node name="RigidBody2D" type="RigidBody2D"]
 script = ExtResource( 1 )
+flap_power = 90.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
