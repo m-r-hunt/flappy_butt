@@ -1,14 +1,14 @@
 extends Node2D
 
+var state = "playing"
+
 func _ready():
-	$VisibilityNotifier2D.connect("screen_exited", self, "on_exited_screen")
-	$VisibilityNotifier2D.connect("screen_entered", self, "on_entered_screen")
+	pass
 
 func _physics_process(delta):
-	transform = transform.translated(Vector2(-1.0, 0.0))
-
-func on_exited_screen():
-	transform = transform.translated(Vector2(400.0, 0.0))
-
-func on_entered_screen():
-	transform.origin.y = 80.0 + randf() * 100.0 - 50.0
+	match state:
+		"playing":
+			transform = transform.translated(Vector2(-1.0, 0.0))
+			if transform.origin.x < -50.0:
+				transform = transform.translated(Vector2(400.0, 0.0))
+				transform.origin.y = 80.0 + randf() * 50.0 - 25.0

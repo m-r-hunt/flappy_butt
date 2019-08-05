@@ -37,7 +37,10 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="Butt" type="RigidBody2D"]
+mode = 2
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 1 )
 flap_power = 90.0
 
